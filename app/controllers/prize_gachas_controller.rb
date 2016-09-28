@@ -12,7 +12,7 @@ class PrizeGachasController < ApplicationController
         @prizes = Prize.find(1)
       end
     else
-      render users_index_path
+      redirect_to users_index_path , notice: 'ポイントが足りません'
     end
   end
 

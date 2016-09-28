@@ -14,7 +14,7 @@ class PointGachasController < ApplicationController
       end
       roll_point_gacha
     else
-      render users_index_path
+      redirect_to users_index_path, notice: '既に回しています'
     end
   end
 
