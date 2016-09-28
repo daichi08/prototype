@@ -1,0 +1,24 @@
+<h1>ホーム画面</h1>
+最新ログイン:<%= current_user.current_sign_in_at %><br>
+最終ログイン:<%= current_user.last_sign_in_at %><br>
+ガチャ回数: <%= current_user.gacha_count %>
+
+<div>
+  <h2>プライズガチャ</h2>
+  <%= link_to 'ガチャ画面へ' , prize_gachas_new_path %>
+</div>
+
+<div>
+  <h2>アンケート一覧</h2>
+  <% if @questions.blank? %>
+    <p><%= '現在答えられるアンケートはありません' %></p>
+  <% else %>
+    <% @questions.each do |question| %>
+      <%= link_to "#{question.title}", questions_show_path(id: question.id) %><br>
+    <% end %>
+  <% end %>
+</div>
+
+<footer>
+  <%= link_to 'お問い合わせ' , pages_help_path %> 
+</footer>

@@ -1,0 +1,14 @@
+<h1>マイページ</h1>
+<%= link_to 'プロフィール変更', edit_user_registration_path %>
+<%= link_to "Back", :back %>
+<div>
+  <% if @prizes.nil? %>
+    <%= "使用できる引換券はありません" %>
+  <% else %>
+    <ul>
+      <% @prizes.each do |prize| %>
+        <li><%= prize.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

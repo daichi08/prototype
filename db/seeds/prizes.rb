@@ -1,0 +1,1 @@
+Prize.create(id: 1, name: "はずれ")

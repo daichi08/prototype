@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <%= link_to "ホーム", users_index_path %>
+    <% if user_signed_in? %> 
+      <%= link_to "マイページ", users_show_path %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      所持ポイント:<%= current_user.have_point %>P
+    <% elsif admin_signed_in? %>
+      <%= link_to "プロフィール変更", edit_admin_registration_path %>
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "サインイン", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+  </header>
+  
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+</body>
+</html>

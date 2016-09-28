@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  period: 2016-09-16 14:28:50
+  have_point: 1
+  title: MyText
+  content: MyText
+  user_id: 1
+
+two:
+  period: 2016-09-16 14:28:50
+  have_point: 1
+  title: MyText
+  content: MyText
+  user_id: 1

@@ -1,0 +1,5 @@
+Point.create(id: 1,point: 1)
+Point.create(id: 2,point: 2)
+Point.create(id: 3,point: 3)
+Point.create(id: 4,point: 4)
+Point.create(id: 5,point: 5)
