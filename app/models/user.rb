@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  has_many :user_questions
-  has_many :questions, through: :user_questions
+  has_many :answers
   
   belongs_to :point_gacha
+  
   belongs_to :prize_gacha
 end

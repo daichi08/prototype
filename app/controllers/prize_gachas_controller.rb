@@ -5,7 +5,7 @@ class PrizeGachasController < ApplicationController
   def show
     if current_user.have_point >= 10
       roll_prize_gacha
-      randam_num = Random.rand(1 .. 3)
+      randam_num = Random.rand(1 ..10)
       if randam_num == 1
         @prizes = Prize.create(name: "引換券" , user_id: current_user.id)
       else

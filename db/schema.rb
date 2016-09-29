@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921100635) do
+ActiveRecord::Schema.define(version: 20160929074817) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20160921100635) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+
+  create_table "answers", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "point_gachas", force: :cascade do |t|
     t.integer  "user_id"
@@ -58,35 +66,14 @@ ActiveRecord::Schema.define(version: 20160921100635) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "question_points", force: :cascade do |t|
-    t.integer  "question_id"
-    t.integer  "point_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "question_points", ["point_id"], name: "index_question_points_on_point_id"
-  add_index "question_points", ["question_id"], name: "index_question_points_on_question_id"
-
   create_table "questions", force: :cascade do |t|
     t.datetime "period"
     t.integer  "have_point"
     t.text     "title"
     t.text     "content"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "user_questions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "user_questions", ["question_id"], name: "index_user_questions_on_question_id"
-  add_index "user_questions", ["user_id"], name: "index_user_questions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -102,8 +89,6 @@ ActiveRecord::Schema.define(version: 20160921100635) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "have_point",             default: 0
-    t.integer  "prize_id"
-    t.integer  "question_id"
     t.integer  "gacha_count",            default: 0
   end
 
