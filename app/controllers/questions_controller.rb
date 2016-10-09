@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_admin! , only: [:new, :create, :edit]
   def index
+    @answers = Answer.create(content: params[:content], user_id: current_user.id, question_id: params[:question_id])
   end
 
   def show

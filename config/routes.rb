@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'prize_gachas/show'
 
   get 'prize_gachas/new'
-  post 'prize_gachas/new/' => 'prize_gachas#show'
+  post 'prize_gachas/new' => 'prize_gachas#show'
 
   get 'prize_gachas/update'
 

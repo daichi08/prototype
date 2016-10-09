@@ -3,6 +3,7 @@
 回答で<%= @question.have_point %>ポイントゲット！
 <%= @question.period %>まで！
 
+
 <% if @question.style_id == 1 %>
   <%= form_for @answer , url: questions_show_path do |f| %>
     <%= f.label :content %>
@@ -11,6 +12,6 @@
   <% end %>
 <% else %>
   <% @selects.each do |f| %>
-    <%= button_to "#{f.choices}" %>
+    <%= button_to "#{f.choices}", question_id: @question.id , content: f.id %>
   <% end %>
 <% end %>
