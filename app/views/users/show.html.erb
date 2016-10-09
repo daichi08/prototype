@@ -2,7 +2,7 @@
 <%= link_to 'プロフィール変更', edit_user_registration_path %>
 <%= link_to "Back", :back %>
 <div>
-  <% if @prizes.nil? %>
+  <% if @prizes.blank? %>
     <%= "使用できる引換券はありません" %>
   <% else %>
     <ul>

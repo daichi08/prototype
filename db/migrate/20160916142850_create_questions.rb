@@ -3,8 +3,9 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.datetime :period
       t.integer :have_point
-      t.text :title
+      t.string :title
       t.text :content
+      t.integer :style_id
 
       t.timestamps null: false
     end

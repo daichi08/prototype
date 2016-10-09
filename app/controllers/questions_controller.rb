@@ -5,6 +5,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find_by(id: params[:id])
+    @answer = Answer.new
+    @selects = Select.where(question_id: @question.id)
   end
 
   def edit
@@ -12,11 +14,20 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @question.selects.build
     @points = Point.all
+    @styles = AnswerStyle.all
   end
   
   def create
-    question_params = params.require(:question).permit(:title, :content, :have_point, :period)
+    question_params = params.require(:question).permit(
+      :title,
+      :content,
+      :have_point,
+      :period,
+      :style_id,
+      selects_attributes: [:id, :question_id, :choices]
+      )
     @question = Question.create(question_params)
   end
 end

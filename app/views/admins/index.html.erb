@@ -1,2 +1,6 @@
 <h1>管理者用ページ</h1>
+
+<% @questions.each do |f| %>
+  <%= f.title %>
+<% end %>
 <%= link_to 'アンケートの追加' , questions_new_path %>

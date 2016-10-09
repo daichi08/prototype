@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  get 'selects/new'
+
+  get 'selects/create'
+
+  get 'select/new'
+
+  get 'select/create'
+
   get 'questions/create'
 
   get 'prize_gachas/index'
@@ -7,7 +15,7 @@ Rails.application.routes.draw do
   get 'prize_gachas/show'
 
   get 'prize_gachas/new'
-  post 'prize_gachas/new' => 'prize_gachas#show'
+  post 'prize_gachas/new/' => 'prize_gachas#show'
 
   get 'prize_gachas/update'
 
@@ -21,6 +29,7 @@ Rails.application.routes.draw do
   get 'point_gachas/update'
 
   get 'questions/show/:id' => 'questions#show'
+  post 'questions/show' => 'questions#index'
   
   get 'pages/index'
 

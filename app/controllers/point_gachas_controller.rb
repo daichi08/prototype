@@ -25,10 +25,12 @@ class PointGachasController < ApplicationController
   end
   
   private
+  
   def roll_point_gacha
     result = User.find_by(id: current_user.id)
     result.have_point += @points.point
     result.gacha_count += 1
     result.save
   end
+  
 end

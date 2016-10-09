@@ -1,11 +1,23 @@
 <%= form_for @question , url: questions_new_path do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
-  <%= f.label :have_point %>
-  <%= f.collection_select :have_point ,@points, :point ,:point %>
-  <%= f.label :period %> 
-  <%= f.date_select :period %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <%= f.label :have_point %>
+    <%= f.collection_select :have_point, @points, :id ,:point %>
+    <%= f.label :period %> 
+    <%= f.date_select :period %>
+    <%= f.label :style_id %>
+    <%= f.collection_select :style_id, @styles, :id ,:name %>
+  </div>
+  <div>
+    <% 4.times do %>
+      <%= f.fields_for :selects do |s| %>
+        <%= s.label :choices %>
+        <%= s.text_field :choices %>
+      <% end %>
+    <% end %>
+  </div>
   <%= f.submit %>
 <% end %>
