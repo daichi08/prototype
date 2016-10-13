@@ -4,14 +4,14 @@
 <%= @question.period %>まで！
 
 
-<% if @question.style_id == 1 %>
-  <%= form_for @answer , url: questions_show_path do |f| %>
+<%= form_for @answer, url: questions_show_path do |f| %>
+  <% if @question.style_id == 1 %>
     <%= f.label :content %>
     <%= f.text_field :content %>
-    <%= f.submit %>
-  <% end %>
-<% else %>
-  <% @selects.each do |f| %>
-    <%= button_to "#{f.choices}", question_id: @question.id , content: f.id %>
+    <%= f.submit name: "#{@question.id}" %>
+  <% else %>
+    <% @question.selects.each do |q| %>
+      <%= f.submit "#{q.choices}", name: "#{q.id}" %>
+    <% end %>
   <% end %>
 <% end %>
