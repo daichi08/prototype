@@ -1,14 +1,19 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_admin! , only: [:new, :create, :edit]
   def index
-    @answer = Answer.create(
-      content: params[:content],
-      user_id: current_user.id,
-      question_id: params[:name]
+    answer_params = params.require(:answer).permit(
+      :content,
+      :user_id,
+      :question_id
     )
-    result = User.find_by(id: current_user.id)
-    result.have_point += 1
-    result.save
+    @answer = Answer.new(answer_params)
+    @question=Question.find_by(id: @answer.question_id)
+    if Answer.find_by(question_id: @answer.question_id, user_id: @answer.user_id).blank?
+      @answer.save
+      answer_the_question
+    else
+      redirect_to users_index_path, notice: '回答済みです'
+    end
   end
 
   def show
@@ -41,13 +46,7 @@ class QuestionsController < ApplicationController
   private
   
   def answer_the_question
-    answer_params = params.require(:answer).permit(
-      :content,
-      :user_id,
-      :question_id
-    )
-    Answer.create(answer_params)
-    result = User.find_by(id: current_user.id)
+    result = User.find_by(id: @answer.user_id)
     result.have_point += Question.find_by(id: @answer.question_id).have_point
     result.save
   end

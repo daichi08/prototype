@@ -8,10 +8,14 @@
   <% if @question.style_id == 1 %>
     <%= f.label :content %>
     <%= f.text_field :content %>
-    <%= f.submit name: "#{@question.id}" %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :question_id, value: @question.id %>
+    <%= f.submit %>
   <% else %>
-    <% @question.selects.each do |q| %>
-      <%= f.submit "#{q.choices}", name: "#{q.id}" %>
-    <% end %>
+    <%= f.label :content %>
+    <%= f.collection_select :content, @question.selects.all, :id, :choices %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :question_id, value: @question.id %>
+    <%= f.submit %>
   <% end %>
 <% end %>
